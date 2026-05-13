@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EmulatorJS Core Finder</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    p {
+      text-align: center;
+      color: #94a3b8;
+      margin-top: 0;
+    }
+
+    #search {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      margin: 20px 0;
+      box-sizing: border-box;
+      background: #1e293b;
+      color: white;
+      outline: none;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 14px;
+      padding: 15px;
+      transition: 0.2s;
+      border: 1px solid #334155;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      border-color: #60a5fa;
+    }
+
+    .ext {
+      font-size: 22px;
+      font-weight: bold;
+      color: #60a5fa;
+    }
+
+    .core {
+      margin-top: 8px;
+      font-size: 18px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .count {
+      margin-bottom: 15px;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>EmulatorJS Core Finder</h1>
+  <p>Search ROM file extensions to find the correct EJS_core</p>
+
+  <input
+    type="text"
+    id="search"
+    placeholder="Search file extension or core..."
+  >
+
+  <div class="count" id="count"></div>
+
+  <div class="grid" id="grid">
+
+    <div class="card">
+      <div class="ext">.gba</div>
+      <div class="core">EJS_core = "gba"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.gb</div>
+      <div class="core">EJS_core = "gb"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.gbc</div>
+      <div class="core">EJS_core = "gb"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.nes</div>
+      <div class="core">EJS_core = "nes"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.fds</div>
+      <div class="core">EJS_core = "nes"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.smc</div>
+      <div class="core">EJS_core = "snes"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.sfc</div>
+      <div class="core">EJS_core = "snes"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.n64</div>
+      <div class="core">EJS_core = "n64"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.z64</div>
+      <div class="core">EJS_core = "n64"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.v64</div>
+      <div class="core">EJS_core = "n64"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.nds</div>
+      <div class="core">EJS_core = "nds"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.bin</div>
+      <div class="core">EJS_core = "segaMD"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.md</div>
+      <div class="core">EJS_core = "segaMD"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.gen</div>
+      <div class="core">EJS_core = "segaMD"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.sms</div>
+      <div class="core">EJS_core = "segaMS"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.gg</div>
+      <div class="core">EJS_core = "segaGG"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.cue</div>
+      <div class="core">EJS_core = "psx"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.iso</div>
+      <div class="core">Depends on console</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.chd</div>
+      <div class="core">psx / segaCD / etc.</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.cdi</div>
+      <div class="core">EJS_core = "segaCD"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.32x</div>
+      <div class="core">EJS_core = "sega32x"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.pce</div>
+      <div class="core">EJS_core = "pce"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.a26</div>
+      <div class="core">EJS_core = "atari2600"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.lnx</div>
+      <div class="core">EJS_core = "lynx"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.j64</div>
+      <div class="core">EJS_core = "jaguar"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.ws</div>
+      <div class="core">EJS_core = "ws"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.wsc</div>
+      <div class="core">EJS_core = "ws"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.ngp</div>
+      <div class="core">EJS_core = "ngp"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.ngc</div>
+      <div class="core">EJS_core = "ngp"</div>
+    </div>
+
+    <div class="card">
+      <div class="ext">.vb</div>
+      <div class="core">EJS_core = "vb"</div>
+    </div>
+
+  </div>
+
+  <script>
+    const search = document.getElementById('search');
+    const cards = document.querySelectorAll('.card');
+    const count = document.getElementById('count');
+
+    function updateCount() {
+      const visible = document.querySelectorAll('.card:not(.hidden)').length;
+      count.textContent = `Total Results: ${visible}`;
+    }
+
+    search.addEventListener('input', () => {
+      const value = search.value.toLowerCase();
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+
+        if (text.includes(value)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      updateCount();
+    });
+
+    updateCount();
+  </script>
+
+</body>
+</html>
