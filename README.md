@@ -14,5 +14,6 @@ Click [here](https://ubg42.github.io/Retro/LegendofZeldaTheOcarinaofTime.html) f
 Click [here](https://ubg42.github.io/Retro/DonkeyKongCountry.html) for Donkey Kong Country!<br>
 Click [here](https://ubg42.github.io/Retro/Frogger.html) for Frogger!<br>
 Click [here](https://ubg42.github.io/Retro/MarioKart64.html) for Mario Kart 64!<br>
+Click [here](https://ubg42.github.io/Retro/Tetris.html) for Tetris!<br>
  
  <hr>
